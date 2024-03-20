@@ -5,8 +5,9 @@ from django.shortcuts import render
 from .models import DynamicModel
 
 
-def blank_page(request):
-    return render(request, "blank.html")
+def front_page(request):
+    data = DynamicModel.objects.all().order_by("model_name")
+    return render(request, "front_page.html", {"data": data})
 
 @csrf_exempt
 def import_data(request):
@@ -28,12 +29,40 @@ def import_data(request):
     else:
         return HttpResponse("Method not allowed", status=405)
 
+
+def create_html_table(data):
+    all_keys = set()
+    for item in data:
+        all_keys.update(item.keys())
+    table_html = "<table>"
+    table_html += "<tr>"
+    for key in all_keys:
+        table_html += f"<th>{key}</th>"
+    table_html += "</tr>"
+    for item in data:
+        table_html += "<tr>"
+        for key in all_keys:
+            table_html += f"<td>{item.get(key, '')}</td>"
+        table_html += "</tr>"
+    table_html += "</table>"
+    return table_html
+
+
 def get_detail_model_name(request, model_name):
     queryset = DynamicModel.objects.filter(model_name=model_name)
     data = [obj.data for obj in queryset]
+
+    # all_keys = set()
+    # for entry in data:
+    #     all_keys.update(entry.keys())
+    # d = {key: [entry.get(key, "") for entry in data] for key in all_keys}
+
     if not data:
         return HttpResponse({"Requested endpoint does not exist"}, status=404)
-    return HttpResponse(json.dumps(data, ensure_ascii=False), content_type="application/json")
+    
+    val = create_html_table(data)
+
+    return render(request, "template.html", {"data": val})
 
 def get_detail_with_id(request, model_name, content_id):
     queryset = DynamicModel.objects.filter(model_name=model_name)
@@ -41,4 +70,7 @@ def get_detail_with_id(request, model_name, content_id):
     data = [obj.data for obj in queryset]
     if not data:
         return HttpResponse({"Requested endpoint does not exist"}, status=404)
-    return HttpResponse(json.dumps(data[0], ensure_ascii=False), content_type="application/json")
+    
+    val = create_html_table(data)
+
+    return render(request, "template.html", {"data": val})
