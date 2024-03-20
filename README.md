@@ -20,7 +20,7 @@ see requirements.txt
 
     `cd du`
 
-4. Start the development server:
+4. Start the development server (default: http://127.0.0.1:8000/):
 
     `python manage.py runserver`
 
