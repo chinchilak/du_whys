@@ -10,21 +10,21 @@ see requirements.txt
 
 1. Clone this repository to your local machine:
 
-    git clone https://github.com/chinchilak/du_whys.git
+    ```git clone https://github.com/chinchilak/du_whys.git```
 
-2. Navigate to the project directory:
+2. Install the project dependencies:
 
-    cd du
+    ```pip install -r requirements.txt```
 
-3. Install the project dependencies:
+3. Navigate to the project directory:
 
-    pip install -r requirements.txt
+    ```cd du```
 
 4. Start the development server:
 
-    python manage.py runserver
+    ```python manage.py runserver```
 
-7. Access the API endpoints in your browser or using a tool like cURL or Postman.
+7. Access the API endpoints in your browser
 
 ## Endpoints
 
