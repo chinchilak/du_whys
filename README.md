@@ -4,7 +4,8 @@ This is a Django project that provides endpoints for importing and querying dyna
 
 ## Prerequisites
 
-see requirements.txt
+- Python (tested with 3.11.4)
+- see requirements.txt
 
 ## Getting Started
 
@@ -12,19 +13,23 @@ see requirements.txt
 
     `git clone https://github.com/chinchilak/du_whys.git`
 
-2. Install the project dependencies:
+2. Navigate into project folder:
+
+    `cd du_whys`
+
+3. Install the project dependencies:
 
     `pip install -r requirements.txt`
 
-3. Navigate to the project directory:
+4. Navigate to the project directory:
 
     `cd du`
 
-4. Start the development server (default: http://127.0.0.1:8000/):
+5. Start the development server (default: http://127.0.0.1:8000/):
 
     `python manage.py runserver`
 
-7. Access the API endpoints in your browser
+6. Access the API endpoints in your browser
 
 - `POST /import`: Imports data from a JSON file to the database.
 - `GET /detail/<model_name>/`: Retrieves all data for a specific model.
