@@ -13,7 +13,7 @@ This is a Django project that provides endpoints for importing and querying dyna
 
     `git clone https://github.com/chinchilak/du_whys.git`
 
-2. Navigate into project folder:
+2. Navigate into project directory:
 
     `cd du_whys`
 
@@ -21,7 +21,7 @@ This is a Django project that provides endpoints for importing and querying dyna
 
     `pip install -r requirements.txt`
 
-4. Navigate to the project directory:
+4. Navigate to the django project directory:
 
     `cd du`
 
