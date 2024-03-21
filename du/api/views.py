@@ -9,6 +9,7 @@ def front_page(request):
     data = DynamicModel.objects.all().order_by("model_name")
     return render(request, "front_page.html", {"data": data})
 
+
 @csrf_exempt
 def import_data(request):
     if request.method == "POST":
@@ -51,11 +52,6 @@ def create_html_table(data):
 def get_detail_model_name(request, model_name):
     queryset = DynamicModel.objects.filter(model_name=model_name)
     data = [obj.data for obj in queryset]
-
-    # all_keys = set()
-    # for entry in data:
-    #     all_keys.update(entry.keys())
-    # d = {key: [entry.get(key, "") for entry in data] for key in all_keys}
 
     if not data:
         return HttpResponse({"Requested endpoint does not exist"}, status=404)
